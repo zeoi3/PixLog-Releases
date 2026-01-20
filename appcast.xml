@@ -15,9 +15,9 @@
 -->
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.2 更新</title>
+    <title>PixLog v0.0.3 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.2更新</description>
+    <description>PixLog 应用的v0.0.3更新</description>
     <language>zh-CN</language>
     
     <!-- 
@@ -25,23 +25,23 @@
       Sparkle 会自动选择版本号最高的那个
     -->
     <item>
-      <title>版本 0.0.2</title>
+      <title>版本 0.0.3</title>
       <description><![CDATA[
         <h2>更新内容</h2>
         <ul>
-          <li>新增：自动更新功能</li>
+          <li>新增：自动更新功能，测试 v0.0.3 发版流程</li>
           <li>修复：一些已知问题</li>
         </ul>
       ]]></description>
       
       <!-- 发布日期，格式：星期, 日 月 年 时:分:秒 时区 -->
-      <pubDate>Wed, 21 Jan 2026 01:03:00 +0800</pubDate>
+      <pubDate>Wed, 21 Jan 2026 01:21:00 +0800</pubDate>
       
       <!-- 构建版本号（对应 Xcode 中的 CURRENT_PROJECT_VERSION）-->
-      <sparkle:version>0.0.2</sparkle:version>
+      <sparkle:version>0.0.3</sparkle:version>
       
       <!-- 显示版本号（对应 Xcode 中的 MARKETING_VERSION）-->
-      <sparkle:shortVersionString>0.0.2</sparkle:shortVersionString>
+      <sparkle:shortVersionString>0.0.3</sparkle:shortVersionString>
       
       <!-- 最低系统版本要求 -->
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
@@ -53,7 +53,7 @@
         - type: 文件类型，保持不变
       -->
       <enclosure 
-        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.2/PixLog.zip"
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.3/PixLog.zip"
         type="application/octet-stream"
         length="3522141"
       />
