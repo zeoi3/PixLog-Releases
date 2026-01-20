@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ============================================================
+  📌 这是什么文件？
+  这是 Sparkle 自动更新的配置文件
+  应用启动时会读取这个文件，检查是否有新版本
+  
+  每次发布新版本时，你需要：
+  1. 修改 <sparkle:version> 为新的构建版本号
+  2. 修改 <sparkle:shortVersionString> 为新的显示版本号
+  3. 修改 enclosure 的 url 为新版本的下载地址
+  4. 修改 enclosure 的 length 为新 zip 文件的字节大小
+  5. 修改 <pubDate> 为发布日期
+  ============================================================
+-->
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>PixLog 更新</title>
+    <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
+    <description>PixLog 应用的最新更新</description>
+    <language>zh-CN</language>
+    
+    <!-- 
+      每个 <item> 代表一个版本
+      Sparkle 会自动选择版本号最高的那个
+    -->
+    <item>
+      <title>版本 1.0.1</title>
+      <description><![CDATA[
+        <h2>更新内容</h2>
+        <ul>
+          <li>新增：自动更新功能</li>
+          <li>修复：一些已知问题</li>
+        </ul>
+      ]]></description>
+      
+      <!-- 发布日期，格式：星期, 日 月 年 时:分:秒 时区 -->
+      <pubDate>Mon, 20 Jan 2026 22:00:00 +0800</pubDate>
+      
+      <!-- 构建版本号（对应 Xcode 中的 CURRENT_PROJECT_VERSION）-->
+      <sparkle:version>2</sparkle:version>
+      
+      <!-- 显示版本号（对应 Xcode 中的 MARKETING_VERSION）-->
+      <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+      
+      <!-- 最低系统版本要求 -->
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      
+      <!-- 
+        下载信息：
+        - url: 下载地址（替换为你 GitHub Release 中的实际地址）
+        - length: 文件大小（字节），需要替换为实际值
+        - type: 文件类型，保持不变
+      -->
+      <enclosure 
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v1.0.1/PixLog.zip"
+        type="application/octet-stream"
+        length="10000000"
+      />
+    </item>
+  </channel>
+</rss>
