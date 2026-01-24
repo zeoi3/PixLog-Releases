@@ -1,61 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ============================================================
-  📌 这是什么文件？
-  这是 Sparkle 自动更新的配置文件
-  应用启动时会读取这个文件，检查是否有新版本
-  
-  每次发布新版本时，你需要：
-  1. 修改 <sparkle:version> 为新的构建版本号
-  2. 修改 <sparkle:shortVersionString> 为新的显示版本号
-  3. 修改 enclosure 的 url 为新版本的下载地址
-  4. 修改 enclosure 的 length 为新 zip 文件的字节大小
-  5. 修改 <pubDate> 为发布日期
-  ============================================================
--->
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.3 更新</title>
+    <title>PixLog v0.0.4 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.3更新</description>
+    <description>PixLog 应用的v0.0.4更新</description>
     <language>zh-CN</language>
     
-    <!-- 
-      每个 <item> 代表一个版本
-      Sparkle 会自动选择版本号最高的那个
-    -->
     <item>
-      <title>版本 0.0.3</title>
+      <title>版本 0.0.4</title>
       <description><![CDATA[
         <h2>更新内容</h2>
         <ul>
-          <li>新增：自动更新功能，测试 v0.0.3 发版流程</li>
-          <li>修复：一些已知问题</li>
+          <li>新增：自定义一天开始时间（熬夜友好模式）- 可设置早上 6 点为新一天的开始，凌晨工作时间会被计入前一天</li>
+          <li>新增：AI 智能洞察与效率评分系统</li>
+          <li>新增：开机自启功能</li>
+          <li>优化：修复切换日期设置后历史数据显示问题</li>
         </ul>
       ]]></description>
       
-      <!-- 发布日期，格式：星期, 日 月 年 时:分:秒 时区 -->
-      <pubDate>Wed, 21 Jan 2026 01:21:00 +0800</pubDate>
+      <pubDate>Sat, 25 Jan 2026 02:56:00 +0800</pubDate>
       
-      <!-- 构建版本号（对应 Xcode 中的 CURRENT_PROJECT_VERSION）-->
-      <sparkle:version>0.0.3</sparkle:version>
-      
-      <!-- 显示版本号（对应 Xcode 中的 MARKETING_VERSION）-->
-      <sparkle:shortVersionString>0.0.3</sparkle:shortVersionString>
-      
-      <!-- 最低系统版本要求 -->
+      <sparkle:version>0.0.4</sparkle:version>
+      <sparkle:shortVersionString>0.0.4</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
       
-      <!-- 
-        下载信息：
-        - url: 下载地址（替换为你 GitHub Release 中的实际地址）
-        - length: 文件大小（字节），需要替换为实际值
-        - type: 文件类型，保持不变
-      -->
       <enclosure 
-        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.3/PixLog.zip"
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.4/PixLog.zip"
         type="application/octet-stream"
-        length="3522141"
+        length="3651834"
       />
     </item>
   </channel>
