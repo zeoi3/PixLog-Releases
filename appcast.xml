@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.4 更新</title>
+    <title>PixLog v0.0.5 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.4更新</description>
+    <description>PixLog 应用的v0.0.5更新</description>
     <language>zh-CN</language>
+    
+    <item>
+      <title>版本 0.0.5</title>
+      <description><![CDATA[
+        <h2>更新内容</h2>
+        <ul>
+          <li>修复：图表逻辑日期显示修复 - 现在周热力图和趋势图能正确处理凌晨时段的数据</li>
+          <li>优化：凌晨 0-6 点的使用时间现在更准确地归入"昨天"（在 6 点模式下）</li>
+        </ul>
+      ]]></description>
+      
+      <pubDate>Sun, 25 Jan 2026 12:10:26 +0800</pubDate>
+      
+      <sparkle:version>0.0.5</sparkle:version>
+      <sparkle:shortVersionString>0.0.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      
+      <enclosure 
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.5/PixLog.zip"
+        type="application/octet-stream"
+        length="3408197"
+      />
+    </item>
     
     <item>
       <title>版本 0.0.4</title>
