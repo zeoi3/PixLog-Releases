@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.5 更新</title>
+    <title>PixLog v0.0.6 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.5更新</description>
+    <description>PixLog 应用的v0.0.6更新</description>
     <language>zh-CN</language>
+    
+    <item>
+      <title>版本 0.0.6</title>
+      <description><![CDATA[
+        <h2>更新内容</h2>
+        <ul>
+          <li>修复：彻底解决逻辑日期 Double Shift 问题 - 设置 6 点模式后，凌晨 0-6 点打开 App 不再显示空数据</li>
+          <li>修复：悬浮窗、主面板、详情页现在都能正确显示逻辑日期对应的数据</li>
+          <li>修复：周热力图、周趋势图、专注洞察等图表在 6 点模式下正常显示</li>
+          <li>修复：浏览器域名（如 Pinterest.com）现在能正确识别为主力应用</li>
+        </ul>
+      ]]></description>
+      
+      <pubDate>Thu, 29 Jan 2026 02:04:02 +0800</pubDate>
+      
+      <sparkle:version>0.0.6</sparkle:version>
+      <sparkle:shortVersionString>0.0.6</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      
+      <enclosure 
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.6/PixLog.zip"
+        type="application/octet-stream"
+        length="1904059"
+      />
+    </item>
     
     <item>
       <title>版本 0.0.5</title>
