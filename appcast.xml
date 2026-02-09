@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.7 更新</title>
+    <title>PixLog v0.0.8 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.7更新</description>
+    <description>PixLog 应用的v0.0.8更新</description>
     <language>zh-CN</language>
-    
+
+    <item>
+      <title>版本 0.0.8</title>
+      <description><![CDATA[
+        <h2>界面优化</h2>
+        <ul>
+          <li>新增：New 看板页面，提供全新的数据可视化体验</li>
+          <li>优化：所有数据卡片图标更新为更直观的 SF Symbols</li>
+          <li>优化：图标颜色系统优化，专注/开始/结束时间使用语义化颜色</li>
+          <li>优化：应用列表显示真实 App 图标</li>
+          <li>修复：逻辑日「回到今天」按钮在凌晨 0-6 点不消失的问题</li>
+        </ul>
+      ]]></description>
+
+      <pubDate>Tue, 10 Feb 2026 02:24:00 +0800</pubDate>
+
+      <sparkle:version>0.0.8</sparkle:version>
+      <sparkle:shortVersionString>0.0.8</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+
+      <enclosure
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.8/PixLog.zip"
+        type="application/octet-stream"
+        length="3440000"
+      />
+    </item>
+
     <item>
       <title>版本 0.0.7</title>
       <description><![CDATA[
@@ -15,20 +41,20 @@
           <li>技术说明：Calendar.date(bySetting:) 在时间已过目标小时时会跳到下一天，改用 startOfDay + 12h 方式</li>
         </ul>
       ]]></description>
-      
+
       <pubDate>Wed, 29 Jan 2026 19:43:00 +0800</pubDate>
-      
+
       <sparkle:version>0.0.7</sparkle:version>
       <sparkle:shortVersionString>0.0.7</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      
-      <enclosure 
+
+      <enclosure
         url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.7/PixLog.zip"
         type="application/octet-stream"
         length="1648563"
       />
     </item>
-    
+
     <item>
       <title>版本 0.0.6</title>
       <description><![CDATA[
@@ -40,20 +66,20 @@
           <li>修复：浏览器域名（如 Pinterest.com）现在能正确识别为主力应用</li>
         </ul>
       ]]></description>
-      
+
       <pubDate>Thu, 29 Jan 2026 02:04:02 +0800</pubDate>
-      
+
       <sparkle:version>0.0.6</sparkle:version>
       <sparkle:shortVersionString>0.0.6</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      
-      <enclosure 
+
+      <enclosure
         url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.6/PixLog.zip"
         type="application/octet-stream"
         length="1904059"
       />
     </item>
-    
+
     <item>
       <title>版本 0.0.5</title>
       <description><![CDATA[
@@ -63,20 +89,20 @@
           <li>优化：凌晨 0-6 点的使用时间现在更准确地归入"昨天"（在 6 点模式下）</li>
         </ul>
       ]]></description>
-      
+
       <pubDate>Sun, 25 Jan 2026 12:10:26 +0800</pubDate>
-      
+
       <sparkle:version>0.0.5</sparkle:version>
       <sparkle:shortVersionString>0.0.5</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      
-      <enclosure 
+
+      <enclosure
         url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.5/PixLog.zip"
         type="application/octet-stream"
         length="3408197"
       />
     </item>
-    
+
     <item>
       <title>版本 0.0.4</title>
       <description><![CDATA[
@@ -88,14 +114,14 @@
           <li>优化：修复切换日期设置后历史数据显示问题</li>
         </ul>
       ]]></description>
-      
+
       <pubDate>Sat, 25 Jan 2026 02:56:00 +0800</pubDate>
-      
+
       <sparkle:version>0.0.4</sparkle:version>
       <sparkle:shortVersionString>0.0.4</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      
-      <enclosure 
+
+      <enclosure
         url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.4/PixLog.zip"
         type="application/octet-stream"
         length="3651834"
