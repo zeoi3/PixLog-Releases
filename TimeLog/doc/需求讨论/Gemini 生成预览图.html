@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmap Focus Tool Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 50% 10%, #2a2a35 0%, #1a1a20 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(40, 40, 50, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card.active {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        /* Chart Animations */
+        .pixel-cell {
+            transition: all 0.3s ease;
+        }
+
+        .fade-enter {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Container (simulating the Dashboard Window) -->
+    <div class="glass-panel w-[900px] h-[600px] rounded-2xl flex flex-col p-8 relative overflow-hidden">
+
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8 fade-enter" style="animation-delay: 0.1s">
+            <div>
+                <h1
+                    class="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                    Focus Insight</h1>
+                <p class="text-sm text-gray-400 mt-1" id="subtitle">Last 14 Days Activity</p>
+            </div>
+
+            <div class="flex gap-2">
+                <div
+                    class="px-3 py-1.5 rounded-lg bg-white/5 text-xs text-gray-300 border border-white/5 cursor-pointer hover:bg-white/10 transition">
+                    14 Days</div>
+                <div
+                    class="px-3 py-1.5 rounded-lg bg-transparent text-xs text-gray-500 hover:text-gray-300 cursor-pointer transition">
+                    Month</div>
+                <div
+                    class="px-3 py-1.5 rounded-lg bg-transparent text-xs text-gray-500 hover:text-gray-300 cursor-pointer transition">
+                    Year</div>
+            </div>
+        </div>
+
+        <!-- Top Area: Active Timeline (Heatmap Pixel Grid) -->
+        <div class="flex-1 flex flex-col justify-center items-center mb-8 relative fade-enter"
+            style="animation-delay: 0.2s">
+
+            <!-- Tooltip/Stat Overlay (Dynamic) -->
+            <div class="absolute top-0 right-0 text-right">
+                <h2 class="text-4xl font-bold tracking-tight text-white mb-1 transition-all duration-300"
+                    id="total-focus-display">48.5h</h2>
+                <div class="text-sm text-emerald-400 font-medium tracking-wide uppercase opacity-80" id="focus-label">
+                    Total Focus</div>
+            </div>
+
+            <!-- Pixel Grid Container -->
+            <!-- 5 Rows (Levels) x 14 Columns (Days) -->
+            <div class="grid grid-cols-14 gap-2 z-10 p-4" id="chart-container"
+                style="display: grid; grid-template-columns: repeat(14, 1fr); gap: 8px;">
+                <!-- Cells will be injected here by JS -->
+            </div>
+
+            <!-- X Axis Labels -->
+            <div class="flex justify-between mt-2 w-full max-w-[600px] px-1 text-xs text-gray-500 font-mono"
+                id="date-labels"
+                style="display: grid; grid-template-columns: repeat(14, 1fr); gap: 8px; text-align: center;">
+                <!-- Dates will be injected here JS -->
+            </div>
+        </div>
+
+        <!-- Bottom Area: App Matrix -->
+        <div class="grid grid-cols-4 gap-4 fade-enter" style="animation-delay: 0.3s">
+
+            <!-- Figma Card -->
+            <div class="glass-card p-4 rounded-xl cursor-pointer" onclick="selectApp('figma', this)">
+                <div class="flex justify-between items-start mb-3 h-8">
+                    <!-- Icon placeholder -->
+                    <div
+                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-red-400 flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-purple-500/20">
+                        F</div>
+                    <div class="text-xs text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">+12%</div>
+                </div>
+                <div class="text-xs text-gray-400 font-medium uppercase tracking-wider mb-1">Figma</div>
+                <div class="text-lg font-semibold text-white">24.2h</div>
+                <!-- Mini sparkline -->
+                <div class="h-1 w-full bg-white/10 rounded-full mt-3 overflow-hidden">
+                    <div class="h-full bg-purple-400 w-[60%] rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- VSCode Card -->
+            <div class="glass-card p-4 rounded-xl cursor-pointer" onclick="selectApp('vscode', this)">
+                <div class="flex justify-between items-start mb-3 h-8">
+                    <div
+                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-blue-500/20">
+                        V</div>
+                    <div class="text-xs text-gray-500 px-2 py-0.5">-5%</div>
+                </div>
+                <div class="text-xs text-gray-400 font-medium uppercase tracking-wider mb-1">VSCode</div>
+                <div class="text-lg font-semibold text-white">18.5h</div>
+                <div class="h-1 w-full bg-white/10 rounded-full mt-3 overflow-hidden">
+                    <div class="h-full bg-blue-400 w-[45%] rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Chrome Card -->
+            <div class="glass-card p-4 rounded-xl cursor-pointer" onclick="selectApp('chrome', this)">
+                <div class="flex justify-between items-start mb-3 h-8">
+                    <div
+                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-yellow-400 to-green-500 flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-yellow-500/20">
+                        C</div>
+                    <div class="text-xs text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">+2%</div>
+                </div>
+                <div class="text-xs text-gray-400 font-medium uppercase tracking-wider mb-1">Arc</div>
+                <div class="text-lg font-semibold text-white">5.8h</div>
+                <div class="h-1 w-full bg-white/10 rounded-full mt-3 overflow-hidden">
+                    <div class="h-full bg-yellow-400 w-[20%] rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Reset / Slack (Clicking background resets, or this card) -->
+            <div class="glass-card p-4 rounded-xl cursor-pointer flex flex-col justify-center items-center text-gray-500 hover:text-white border-dashed border-white/20 hover:border-white/40"
+                onclick="resetView()">
+                <div class="text-xs uppercase tracking-widest mb-1">Reset View</div>
+                <div class="text-[10px] opacity-50">Show Total Heatmap</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script>
+        // Mock Data for 14 Days
+        // Days: 1-14
+        const data = {
+            figma: [2, 4, 5, 1, 0, 0, 3, 5, 6, 2, 4, 3, 5, 4],
+            vscode: [5, 2, 1, 6, 0, 0, 2, 3, 2, 5, 6, 4, 2, 3],
+            chrome: [1, 1, 2, 1, 0, 0, 1, 1, 1, 2, 1, 1, 2, 1]
+        };
+
+        const themeColors = {
+            total: 'bg-emerald-500',
+            figma: 'bg-purple-500',
+            vscode: 'bg-blue-500',
+            chrome: 'bg-yellow-400'
+        };
+
+        // Define intensity levels (0-4) colors for each theme? 
+        // Or just use opacity. Let's use opacity for simplicity in this demo.
+
+        // Calculate Totals per day
+        const total = data.figma.map((val, i) => val + data.vscode[i] + data.chrome[i]);
+
+        const chartContainer = document.getElementById('chart-container');
+        const dateLabels = document.getElementById('date-labels');
+        const totalDisplay = document.getElementById('total-focus-display');
+        const focusLabel = document.getElementById('focus-label');
+        const subtitle = document.getElementById('subtitle');
+
+        let currentMode = 'total';
+
+        function init() {
+            renderPixels(total, 'total');
+            renderLabels();
+        }
+
+        function renderLabels() {
+            const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+            let html = '';
+            for (let i = 0; i < 14; i++) {
+                let label = days[i % 7];
+                html += `<div class="text-center opacity-40 hover:opacity-100 transition text-[10px]">${label}</div>`;
+            }
+            dateLabels.innerHTML = html;
+        }
+
+        // Render a 14-column x 5-row grid. 
+        // We render COLUMN by COLUMN.
+        function renderPixels(dataset, type) {
+            chartContainer.innerHTML = '';
+
+            // Determine max value for global scaling context or local? 
+            // In a Github graph, the levels are absolute (e.g. >5 commits = dark).
+            // Let's assume max scale is 8 hours for Level 4.
+            const maxLevelRef = 8;
+
+            // Create 14 columns
+            for (let col = 0; col < 14; col++) {
+                let val = dataset[col];
+
+                // create a column container
+                let columnDiv = document.createElement('div');
+                columnDiv.className = 'flex flex-col-reverse gap-1.5 group cursor-pointer'; // flex-col-reverse to build from bottom
+
+                // Tooltip logic specific to column
+                let tooltip = document.createElement('div');
+                tooltip.className = "absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-20";
+                tooltip.innerText = `${val}h`;
+                // Note: tooltip positioning needs relative parent.
+                // For simplicity, we add tooltip to the LAST cell or the wrapper.
+                // Let's add it to wrapper but position it better? 
+                // Actually, let's just make the column relative.
+                columnDiv.classList.add('relative');
+                columnDiv.appendChild(tooltip);
+
+                // Create 5 cells (levels)
+                for (let row = 0; row < 5; row++) {
+                    let cell = document.createElement('div');
+                    cell.className = 'w-8 h-8 rounded-md pixel-cell border border-white/5';
+
+                    // Logic: How filled is this cell?
+                    // Level 0: 0-1h
+                    // Level 1: 1-2h
+                    // ...
+                    // GitHub style: Only change opacity based on total.
+                    // But user asked for "Pixel Grid" which might mean stacking blocks?
+
+                    // Interpretation A: A vertical stack of squares (EQ meter style).
+                    // Interpretation B: Single square per day that changes color (Github style).
+
+                    // Since the user said "Bar chart changed to Pixel Grid" and we track "Amount", 
+                    // usually vertical stacking (Interpretation A) is more fun for "charging up".
+                    // Let's do Stacked Blocks logic.
+
+                    // Thresholds for stacks:
+                    // Block 1: > 0
+                    // Block 2: > 2
+                    // Block 3: > 4
+                    // Block 4: > 6
+                    // Block 5: > 8
+
+                    let threshold = row * 1.5; // 0, 1.5, 3, 4.5, 6
+                    let isActive = val > threshold;
+
+                    if (isActive) {
+                        cell.classList.add(themeColors[type]);
+                        // Opacity gradient for stack?
+                        // Base opacity
+                        cell.style.opacity = 0.4 + (row * 0.15); // Higher blocks are brighter? Or consistent?    
+                        cell.classList.add('shadow-[0_0_10px_rgba(255,255,255,0.1)]');
+
+                        // If it's the top-most active block, give it extra glow
+                        let nextThreshold = (row + 1) * 1.5;
+                        if (val <= nextThreshold) {
+                            cell.style.opacity = 1;
+                            cell.classList.add('shadow-lg');
+                        }
+
+                    } else {
+                        cell.className = 'w-8 h-8 rounded-md bg-white/5'; // Empty state
+                    }
+
+                    columnDiv.appendChild(cell);
+                }
+
+                chartContainer.appendChild(columnDiv);
+            }
+        }
+
+        window.selectApp = function (appKey, el) {
+            document.querySelectorAll('.glass-card').forEach(c => c.classList.remove('active'));
+            if (currentMode === appKey) {
+                resetView();
+                return;
+            }
+            el.classList.add('active');
+            currentMode = appKey;
+            renderPixels(data[appKey], appKey);
+
+            let sum = data[appKey].reduce((a, b) => a + b, 0);
+            totalDisplay.innerText = sum.toFixed(1) + 'h';
+            focusLabel.innerText = appKey + ' Focus';
+            focusLabel.className = `text-sm font-medium tracking-wide uppercase opacity-80 decoration-slice text-${getColorName(appKey)}`;
+            subtitle.innerText = `Last 14 Days on ${appKey.charAt(0).toUpperCase() + appKey.slice(1)}`;
+        }
+
+        window.resetView = function () {
+            document.querySelectorAll('.glass-card').forEach(c => c.classList.remove('active'));
+            currentMode = 'total';
+            renderPixels(total, 'total');
+
+            let sum = total.reduce((a, b) => a + b, 0);
+            totalDisplay.innerText = sum.toFixed(1) + 'h';
+            focusLabel.innerText = 'Total Focus';
+            focusLabel.className = `text-sm text-emerald-400 font-medium tracking-wide uppercase opacity-80`;
+            subtitle.innerText = 'Last 14 Days Activity';
+        }
+
+        function getColorName(key) {
+            if (key === 'figma') return 'purple-400';
+            if (key === 'vscode') return 'blue-400';
+            if (key === 'chrome') return 'yellow-400';
+            return 'emerald-400';
+        }
+
+        init();
+
+
+    </script>
+</body>
+
+</html>

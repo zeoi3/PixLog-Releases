@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixLog 功能示意草稿</title>
+    <style>
+        :root {
+            --bg: #0d0d0f;
+            --card: #1a1a1f;
+            --card-hover: #252530;
+            --text: #ffffff;
+            --text-dim: #8b8b9a;
+            --blue: #4f8cff;
+            --green: #4ade80;
+            --orange: #fbbf24;
+            --purple: #a78bfa;
+            --pink: #f472b6;
+            --red: #f87171;
+            --border: #2a2a35;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: var(--text-dim);
+            margin-top: 8px;
+        }
+
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            background: var(--card-hover);
+            transform: translateX(4px);
+        }
+
+        .card-id {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-dim);
+        }
+
+        /* 数据展示区 */
+        .data-display {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 大数字 */
+        .big-number {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .big-number span {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-left: 4px;
+        }
+
+        .big-number .trend {
+            font-size: 0.9rem;
+            margin-left: 12px;
+        }
+
+        .trend.up {
+            color: var(--green);
+        }
+
+        .trend.down {
+            color: var(--red);
+        }
+
+        /* 百分比 */
+        .percent {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        /* 计数 */
+        .count {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        /* 柱状图 */
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 80px;
+        }
+
+        .bar {
+            width: 20px;
+            background: var(--blue);
+            border-radius: 4px 4px 0 0;
+            transition: 0.3s;
+        }
+
+        .bar:hover {
+            background: var(--purple);
+        }
+
+        /* 折线图示意 */
+        .line-chart {
+            width: 100%;
+            height: 80px;
+            position: relative;
+        }
+
+        .line-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 热力图 */
+        .heatmap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            max-width: 400px;
+        }
+
+        .heat-cell {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .heat-0 {
+            background: #1a1a1f;
+        }
+
+        .heat-1 {
+            background: #234d32;
+        }
+
+        .heat-2 {
+            background: #2d6a40;
+        }
+
+        .heat-3 {
+            background: #3d9956;
+        }
+
+        .heat-4 {
+            background: #4ade80;
+        }
+
+        /* 排行榜 */
+        .ranking {
+            width: 100%;
+        }
+
+        .rank-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .rank-item:last-child {
+            border-bottom: none;
+        }
+
+        .rank-num {
+            font-weight: 700;
+            width: 24px;
+        }
+
+        .rank-bar {
+            flex: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .rank-bar-fill {
+            height: 100%;
+            background: var(--blue);
+            border-radius: 4px;
+        }
+
+        .rank-time {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* 进度条 */
+        .progress-container {
+            width: 100%;
+        }
+
+        .progress-bar {
+            height: 16px;
+            background: var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            border-radius: 8px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* 时间线 */
+        .timeline {
+            width: 100%;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+        }
+
+        .timeline-time {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            width: 50px;
+        }
+
+        .timeline-bar {
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .timeline-label {
+            font-size: 0.8rem;
+        }
+
+        /* 徽章 */
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* 设置项 */
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .setting-row:last-child {
+            border-bottom: none;
+        }
+
+        .toggle {
+            width: 44px;
+            height: 24px;
+            background: var(--green);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        /* 实时状态 */
+        .live-status {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(74, 222, 128, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .pulse {
+            width: 12px;
+            height: 12px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* 对比视图 */
+        .compare {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .compare-item {
+            text-align: center;
+        }
+
+        .compare-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .compare-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        .compare-arrow {
+            font-size: 2rem;
+            color: var(--green);
+        }
+
+        /* 分类标题 */
+        .category {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 48px 0 24px;
+            padding: 16px 20px;
+            background: linear-gradient(90deg, rgba(79, 140, 255, 0.1), transparent);
+            border-radius: 12px;
+            border-left: 3px solid var(--blue);
+        }
+
+        .category:first-of-type {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎯 PixLog 功能可视化草稿</h1>
+            <p>每张卡片展示功能的 UI 示意</p>
+        </header>
+
+        <div class="cards">
+            <!-- 类别 A -->
+            <div class="category"><span style="font-size:1.5rem">📊</span><span
+                    style="font-size:1.2rem;font-weight:600">类别 A：核心数据指标</span></div>
+
+            <div class="card">
+                <div class="card-id">A1</div>
+                <div class="card-title">今日专注时长</div>
+                <div class="data-display">
+                    <div class="big-number">4<span>h</span> 32<span>m</span><span class="trend up">↑12%</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">A2</div>
+                <div class="card-title">今日专注率</div>
+                <div class="data-display">
+                    <div class="percent">68%</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">A3</div>
+                <div class="card-title">今日总使用时长</div>
+                <div class="data-display">
+                    <div class="big-number" style="color:var(--purple)">6<span>h</span> 40<span>m</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">A4</div>
+                <div class="card-title">今日应用切换次数</div>
+                <div class="data-display">
+                    <div class="count">47<span style="font-size:1rem;color:var(--text-dim)"> 次</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">A5</div>
+                <div class="card-title">今日被打断次数</div>
+                <div class="data-display">
+                    <div class="count" style="color:var(--red)">8<span style="font-size:1rem;color:var(--text-dim)">
+                            次</span><span class="trend down" style="font-size:0.9rem;margin-left:12px">↓3</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">A6</div>
+                <div class="card-title">平均每次专注时长</div>
+                <div class="data-display">
+                    <div class="big-number" style="color:var(--green)">34<span>min</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">A7</div>
+                <div class="card-title">最长连续专注</div>
+                <div class="data-display">
+                    <div class="big-number">1<span>h</span> 50<span>m</span> 🔥</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">A8</div>
+                <div class="card-title">当前连续专注</div>
+                <div class="data-display">
+                    <div class="live-status">
+                        <div class="pulse"></div>
+                        <span style="font-size:1.5rem;font-weight:600">连续专注 47 分钟</span>
+                        <span style="color:var(--text-dim)">(Cursor)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 类别 B -->
+            <div class="category"><span style="font-size:1.5rem">⏰</span><span
+                    style="font-size:1.2rem;font-weight:600">类别 B：时间模式分析</span></div>
+
+            <div class="card">
+                <div class="card-id">B1</div>
+                <div class="card-title">24 小时专注分布</div>
+                <div class="data-display">
+                    <div class="bar-chart">
+                        <div class="bar" style="height:10%"></div>
+                        <div class="bar" style="height:15%"></div>
+                        <div class="bar" style="height:30%"></div>
+                        <div class="bar" style="height:80%"></div>
+                        <div class="bar" style="height:100%"></div>
+                        <div class="bar" style="height:90%"></div>
+                        <div class="bar" style="height:60%"></div>
+                        <div class="bar" style="height:40%"></div>
+                        <div class="bar" style="height:20%"></div>
+                        <div class="bar" style="height:10%"></div>
+                        <div class="bar" style="height:50%"></div>
+                        <div class="bar" style="height:85%"></div>
+                        <div class="bar" style="height:95%"></div>
+                        <div class="bar" style="height:70%"></div>
+                        <div class="bar" style="height:40%"></div>
+                        <div class="bar" style="height:20%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">B2</div>
+                <div class="card-title">时段专注热力图 (7天×24小时)</div>
+                <div class="data-display">
+                    <div class="heatmap" id="heatmap1"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">B3</div>
+                <div class="card-title">工作开始时间</div>
+                <div class="data-display">
+                    <div class="big-number" style="color:var(--orange)">09:12</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">B4</div>
+                <div class="card-title">工作结束时间</div>
+                <div class="data-display">
+                    <div class="big-number" style="color:var(--purple)">22:45</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">B5</div>
+                <div class="card-title">午休时长</div>
+                <div class="data-display">
+                    <div class="big-number" style="color:var(--green)">1<span>h</span> 15<span>m</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">B6</div>
+                <div class="card-title">早起鸟/夜猫子</div>
+                <div class="data-display">
+                    <div style="text-align:center">
+                        <div style="font-size:3rem">🦉</div>
+                        <div style="color:var(--text-dim);margin-top:8px">夜猫子型</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">B7</div>
+                <div class="card-title">工作日 vs 周末</div>
+                <div class="data-display">
+                    <div class="compare">
+                        <div class="compare-item">
+                            <div class="compare-value" style="color:var(--blue)">3.2h</div>
+                            <div class="compare-label">工作日均</div>
+                        </div>
+                        <div class="compare-arrow">→</div>
+                        <div class="compare-item">
+                            <div class="compare-value" style="color:var(--purple)">1.2h</div>
+                            <div class="compare-label">周末日均</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">B8</div>
+                <div class="card-title">每日专注曲线</div>
+                <div class="data-display">
+                    <div class="line-chart">
+                        <svg viewBox="0 0 300 80">
+                            <polyline fill="none" stroke="#4f8cff" stroke-width="2"
+                                points="0,70 20,60 40,40 60,20 80,25 100,15 120,30 140,45 160,50 180,35 200,20 220,15 240,25 260,40 280,55 300,60" />
+                            <polyline fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="4"
+                                points="0,50 300,50" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">B9</div>
+                <div class="card-title">高效时段推荐</div>
+                <div class="data-display">
+                    <div
+                        style="text-align:center;padding:16px;background:rgba(74,222,128,0.1);border-radius:12px;border:1px solid rgba(74,222,128,0.3)">
+                        <div style="font-size:0.9rem;color:var(--text-dim)">🤖 AI 洞察</div>
+                        <div style="font-size:1.5rem;font-weight:600;margin-top:8px;color:var(--green)">10:00 - 12:00
+                        </div>
+                        <div style="color:var(--text-dim);margin-top:4px">是你的黄金专注时段</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">B10</div>
+                <div class="card-title">低效时段提醒</div>
+                <div class="data-display">
+                    <div
+                        style="text-align:center;padding:16px;background:rgba(248,113,113,0.1);border-radius:12px;border:1px solid rgba(248,113,113,0.3)">
+                        <div style="font-size:0.9rem;color:var(--text-dim)">⚠️ 注意</div>
+                        <div style="font-size:1.2rem;font-weight:600;margin-top:8px;color:var(--red)">15:00 - 16:00
+                        </div>
+                        <div style="color:var(--text-dim);margin-top:4px">你经常在这个时段分心</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 类别 C -->
+            <div class="category"><span style="font-size:1.5rem">📈</span><span
+                    style="font-size:1.2rem;font-weight:600">类别 C：趋势与对比</span></div>
+
+            <div class="card">
+                <div class="card-id">C1</div>
+                <div class="card-title">日趋势图 (过去 7 天)</div>
+                <div class="data-display">
+                    <div class="bar-chart">
+                        <div class="bar" style="height:60%;background:var(--purple)"></div>
+                        <div class="bar" style="height:80%;background:var(--purple)"></div>
+                        <div class="bar" style="height:50%;background:var(--purple)"></div>
+                        <div class="bar" style="height:90%;background:var(--purple)"></div>
+                        <div class="bar" style="height:70%;background:var(--purple)"></div>
+                        <div class="bar" style="height:40%;background:var(--purple)"></div>
+                        <div class="bar" style="height:100%;background:var(--blue)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">C2-C3</div>
+                <div class="card-title">周/月趋势图</div>
+                <div class="data-display">
+                    <div class="line-chart">
+                        <svg viewBox="0 0 300 80">
+                            <polyline fill="none" stroke="#4f8cff" stroke-width="2"
+                                points="0,60 50,50 100,55 150,40 200,30 250,25 300,20" />
+                            <polyline fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4"
+                                points="0,50 300,50" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">C4</div>
+                <div class="card-title">年度总览 (365 天热力图)</div>
+                <div class="data-display">
+                    <div class="heatmap" id="heatmap2"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">C5</div>
+                <div class="card-title">本周 vs 上周</div>
+                <div class="data-display">
+                    <div class="compare">
+                        <div class="compare-item">
+                            <div class="compare-value">18.5h</div>
+                            <div class="compare-label">上周</div>
+                        </div>
+                        <div class="compare-arrow">→</div>
+                        <div class="compare-item">
+                            <div class="compare-value" style="color:var(--green)">22.3h</div>
+                            <div class="compare-label">本周</div>
+                        </div>
+                        <div style="font-size:1.5rem;font-weight:700;color:var(--green);margin-left:12px">↑21%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">C6-C10</div>
+                <div class="card-title">趋势摘要</div>
+                <div class="data-display">
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center;width:100%">
+                        <div>
+                            <div style="font-size:1.5rem;font-weight:700;color:var(--green)">↑16%</div>
+                            <div style="font-size:0.8rem;color:var(--text-dim)">环比上月</div>
+                        </div>
+                        <div>
+                            <div style="font-size:1.5rem;font-weight:700">87h</div>
+                            <div style="font-size:0.8rem;color:var(--text-dim)">本月总计</div>
+                        </div>
+                        <div>
+                            <div style="font-size:1.5rem;font-weight:700;color:var(--blue)">105h</div>
+                            <div style="font-size:0.8rem;color:var(--text-dim)">预测完成</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 类别 D -->
+            <div class="category"><span style="font-size:1.5rem">🏆</span><span
+                    style="font-size:1.2rem;font-weight:600">类别 D：排行榜</span></div>
+
+            <div class="card">
+                <div class="card-id">D1-D2</div>
+                <div class="card-title">应用使用排行</div>
+                <div class="data-display">
+                    <div class="ranking">
+                        <div class="rank-item"><span class="rank-num">🥇</span><span>Cursor</span>
+                            <div class="rank-bar">
+                                <div class="rank-bar-fill" style="width:100%"></div>
+                            </div><span class="rank-time">12h 45m</span>
+                        </div>
+                        <div class="rank-item"><span class="rank-num">🥈</span><span>Chrome</span>
+                            <div class="rank-bar">
+                                <div class="rank-bar-fill" style="width:80%"></div>
+                            </div><span class="rank-time">10h 20m</span>
+                        </div>
+                        <div class="rank-item"><span class="rank-num">🥉</span><span>Figma</span>
+                            <div class="rank-bar">
+                                <div class="rank-bar-fill" style="width:50%"></div>
+                            </div><span class="rank-time">6h 30m</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">D3</div>
+                <div class="card-title">浏览器域名排行</div>
+                <div class="data-display">
+                    <div class="ranking">
+                        <div class="rank-item"><span class="rank-num">1</span><span>github.com</span>
+                            <div class="rank-bar">
+                                <div class="rank-bar-fill" style="width:100%;background:var(--purple)"></div>
+                            </div><span class="rank-time">3h 20m</span>
+                        </div>
+                        <div class="rank-item"><span class="rank-num">2</span><span>stackoverflow.com</span>
+                            <div class="rank-bar">
+                                <div class="rank-bar-fill" style="width:65%;background:var(--purple)"></div>
+                            </div><span class="rank-time">2h 10m</span>
+                        </div>
+                        <div class="rank-item"><span class="rank-num">3</span><span>chatgpt.com</span>
+                            <div class="rank-bar">
+                                <div class="rank-bar-fill" style="width:40%;background:var(--purple)"></div>
+                            </div><span class="rank-time">1h 20m</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">D4-D5</div>
+                <div class="card-title">每日冠军 & 连续称霸</div>
+                <div class="data-display">
+                    <div style="display:flex;gap:16px;align-items:center">
+                        <div
+                            style="text-align:center;padding:16px 24px;background:linear-gradient(135deg,rgba(79,140,255,0.2),rgba(167,139,250,0.2));border-radius:12px">
+                            <div style="font-size:2rem">🏆</div>
+                            <div style="font-weight:600;margin-top:4px">Cursor</div>
+                            <div style="font-size:0.8rem;color:var(--text-dim)">连续称霸 5 天</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">D6-D9</div>
+                <div class="card-title">新晋/退役/变化应用</div>
+                <div class="data-display">
+                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;width:100%">
+                        <div style="padding:12px;background:rgba(74,222,128,0.1);border-radius:8px"><span
+                                style="color:var(--green)">✨ 新晋</span>
+                            <div style="margin-top:8px">Notion ↑180%</div>
+                        </div>
+                        <div style="padding:12px;background:rgba(248,113,113,0.1);border-radius:8px"><span
+                                style="color:var(--red)">👋 退役</span>
+                            <div style="margin-top:8px">Sketch (12月)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 类别 E -->
+            <div class="category"><span style="font-size:1.5rem">🚨</span><span
+                    style="font-size:1.2rem;font-weight:600">类别 E：干扰与分心分析</span></div>
+
+            <div class="card">
+                <div class="card-id">E1-E3</div>
+                <div class="card-title">打断来源排行</div>
+                <div class="data-display">
+                    <div class="ranking">
+                        <div class="rank-item"><span class="rank-num" style="color:var(--red)">1</span><span>微信</span>
+                            <div class="rank-bar">
+                                <div class="rank-bar-fill" style="width:100%;background:var(--red)"></div>
+                            </div><span class="rank-time">5次 12min</span>
+                        </div>
+                        <div class="rank-item"><span class="rank-num"
+                                style="color:var(--orange)">2</span><span>飞书</span>
+                            <div class="rank-bar">
+                                <div class="rank-bar-fill" style="width:40%;background:var(--orange)"></div>
+                            </div><span class="rank-time">2次 8min</span>
+                        </div>
+                        <div class="rank-item"><span class="rank-num">3</span><span>邮件</span>
+                            <div class="rank-bar">
+                                <div class="rank-bar-fill" style="width:20%;background:var(--text-dim)"></div>
+                            </div><span class="rank-time">1次 3min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">E4-E5</div>
+                <div class="card-title">社交/娱乐应用时长</div>
+                <div class="data-display">
+                    <div style="display:flex;gap:32px">
+                        <div style="text-align:center">
+                            <div style="font-size:2.5rem;font-weight:700;color:var(--orange)">1h 40m</div>
+                            <div style="color:var(--text-dim);margin-top:4px">💬 社交</div>
+                        </div>
+                        <div style="text-align:center">
+                            <div style="font-size:2.5rem;font-weight:700;color:var(--pink)">45m</div>
+                            <div style="color:var(--text-dim);margin-top:4px">🎬 娱乐</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">E7-E8</div>
+                <div class="card-title">深度工作 vs 碎片时间</div>
+                <div class="data-display">
+                    <div class="progress-container">
+                        <div style="display:flex;gap:8px;height:24px">
+                            <div
+                                style="flex:7;background:var(--green);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.75rem">
+                                深度 70%</div>
+                            <div
+                                style="flex:3;background:var(--orange);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.75rem">
+                                碎片 30%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 类别 F -->
+            <div class="category"><span style="font-size:1.5rem">🎯</span><span
+                    style="font-size:1.2rem;font-weight:600">类别 F：目标与成就</span></div>
+
+            <div class="card">
+                <div class="card-id">F1-F2</div>
+                <div class="card-title">每日目标进度</div>
+                <div class="data-display">
+                    <div class="progress-container" style="width:100%">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:68%"></div>
+                        </div>
+                        <div class="progress-text"><span>已完成 4h 5m</span><span>目标 6h</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">F3</div>
+                <div class="card-title">连续达标天数</div>
+                <div class="data-display">
+                    <div style="text-align:center">
+                        <div style="font-size:3rem;font-weight:700;color:var(--orange)">12</div>
+                        <div style="color:var(--text-dim)">🔥 连续天数</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">F7</div>
+                <div class="card-title">成就徽章</div>
+                <div class="data-display">
+                    <div class="badges">
+                        <div class="badge" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)">🏅</div>
+                        <div class="badge" style="background:linear-gradient(135deg,#4f8cff,#3b82f6)">⭐</div>
+                        <div class="badge" style="background:linear-gradient(135deg,#a78bfa,#8b5cf6)">🚀</div>
+                        <div class="badge" style="background:linear-gradient(135deg,#4ade80,#22c55e)">🔥</div>
+                        <div class="badge" style="background:var(--border)">🔒</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">F8</div>
+                <div class="card-title">等级系统</div>
+                <div class="data-display">
+                    <div style="text-align:center">
+                        <div style="font-size:1rem;color:var(--text-dim)">当前等级</div>
+                        <div
+                            style="font-size:2rem;font-weight:700;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:8px 0">
+                            专注达人</div>
+                        <div class="progress-bar" style="height:8px;max-width:200px;margin:0 auto">
+                            <div class="progress-fill" style="width:75%"></div>
+                        </div>
+                        <div style="font-size:0.8rem;color:var(--text-dim);margin-top:8px">距离下一级还需 25h</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 类别 G -->
+            <div class="category"><span style="font-size:1.5rem">🔬</span><span
+                    style="font-size:1.2rem;font-weight:600">类别 G：深度分析</span></div>
+
+            <div class="card">
+                <div class="card-id">G1</div>
+                <div class="card-title">应用使用时间线</div>
+                <div class="data-display">
+                    <div class="timeline">
+                        <div class="timeline-item"><span class="timeline-time">09:12</span>
+                            <div class="timeline-bar" style="width:120px;background:var(--blue)"></div><span
+                                class="timeline-label">Cursor 1h33m</span>
+                        </div>
+                        <div class="timeline-item"><span class="timeline-time">10:45</span>
+                            <div class="timeline-bar" style="width:30px;background:var(--red)"></div><span
+                                class="timeline-label">微信 7m ⚠️</span>
+                        </div>
+                        <div class="timeline-item"><span class="timeline-time">10:52</span>
+                            <div class="timeline-bar" style="width:60px;background:var(--blue)"></div><span
+                                class="timeline-label">Cursor 38m</span>
+                        </div>
+                        <div class="timeline-item"><span class="timeline-time">11:30</span>
+                            <div class="timeline-bar" style="width:80px;background:var(--purple)"></div><span
+                                class="timeline-label">Chrome 45m</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">G4</div>
+                <div class="card-title">周几效率对比</div>
+                <div class="data-display">
+                    <div style="display:flex;gap:8px;align-items:flex-end;height:80px">
+                        <div style="text-align:center">
+                            <div class="bar" style="height:60px;width:32px"></div>
+                            <div style="font-size:0.7rem;color:var(--text-dim);margin-top:4px">一</div>
+                        </div>
+                        <div style="text-align:center">
+                            <div class="bar" style="height:55px;width:32px"></div>
+                            <div style="font-size:0.7rem;color:var(--text-dim);margin-top:4px">二</div>
+                        </div>
+                        <div style="text-align:center">
+                            <div class="bar" style="height:80px;width:32px;background:var(--green)"></div>
+                            <div style="font-size:0.7rem;color:var(--text-dim);margin-top:4px">三</div>
+                        </div>
+                        <div style="text-align:center">
+                            <div class="bar" style="height:65px;width:32px"></div>
+                            <div style="font-size:0.7rem;color:var(--text-dim);margin-top:4px">四</div>
+                        </div>
+                        <div style="text-align:center">
+                            <div class="bar" style="height:45px;width:32px"></div>
+                            <div style="font-size:0.7rem;color:var(--text-dim);margin-top:4px">五</div>
+                        </div>
+                        <div style="text-align:center">
+                            <div class="bar" style="height:25px;width:32px;background:var(--text-dim)"></div>
+                            <div style="font-size:0.7rem;color:var(--text-dim);margin-top:4px">六</div>
+                        </div>
+                        <div style="text-align:center">
+                            <div class="bar" style="height:15px;width:32px;background:var(--text-dim)"></div>
+                            <div style="font-size:0.7rem;color:var(--text-dim);margin-top:4px">日</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">G9</div>
+                <div class="card-title">日历热力图</div>
+                <div class="data-display">
+                    <div class="heatmap" id="heatmap3"></div>
+                </div>
+            </div>
+
+            <!-- 类别 H -->
+            <div class="category"><span style="font-size:1.5rem">⚙️</span><span
+                    style="font-size:1.2rem;font-weight:600">类别 H：设置与配置</span></div>
+
+            <div class="card">
+                <div class="card-id">H1-H2</div>
+                <div class="card-title">主力应用管理</div>
+                <div class="data-display">
+                    <div style="width:100%">
+                        <div class="setting-row"><span>☑ Cursor</span>
+                            <div class="toggle"></div>
+                        </div>
+                        <div class="setting-row"><span>☑ VS Code</span>
+                            <div class="toggle"></div>
+                        </div>
+                        <div class="setting-row"><span>▼ ☑ Chrome</span>
+                            <div class="toggle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">H4-H5</div>
+                <div class="card-title">目标 & 通知设置</div>
+                <div class="data-display">
+                    <div style="width:100%">
+                        <div class="setting-row"><span>每日目标</span><span style="color:var(--blue);font-weight:600">6
+                                小时</span></div>
+                        <div class="setting-row"><span>达标提醒</span>
+                            <div class="toggle"></div>
+                        </div>
+                        <div class="setting-row"><span>久坐提醒</span>
+                            <div class="toggle" style="background:var(--text-dim)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-id">H10</div>
+                <div class="card-title">主题设置</div>
+                <div class="data-display">
+                    <div style="display:flex;gap:16px">
+                        <div
+                            style="padding:16px 24px;background:var(--border);border-radius:12px;border:2px solid var(--blue)">
+                            🌙 深色</div>
+                        <div style="padding:16px 24px;background:var(--border);border-radius:12px">☀️ 浅色</div>
+                        <div style="padding:16px 24px;background:var(--border);border-radius:12px">🖥️ 跟随系统</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // 生成热力图
+        function generateHeatmap(id, count) {
+            const container = document.getElementById(id);
+            for (let i = 0; i < count; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'heat-cell heat-' + Math.floor(Math.random() * 5);
+                container.appendChild(cell);
+            }
+        }
+        generateHeatmap('heatmap1', 168); // 7×24
+        generateHeatmap('heatmap2', 120); // 年度示意
+        generateHeatmap('heatmap3', 35);  // 日历示意
+    </script>
+</body>
+
+</html>
