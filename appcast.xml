@@ -1,38 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.10 更新</title>
+    <title>PixLog v0.0.9 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.10更新</description>
+    <description>PixLog 应用的v0.0.9更新</description>
     <language>zh-CN</language>
-
-    <item>
-      <title>版本 0.0.10</title>
-      <description><![CDATA[
-        <h2>更新内容</h2>
-        <ul>
-          <li>新增：发布最新构建包，优化整体体验</li>
-          <li>优化：细节交互与界面表现</li>
-          <li>修复：已知问题并提升稳定性</li>
-        </ul>
-      ]]></description>
-
-      <pubDate>Thu, 19 Feb 2026 00:44:51 +0800</pubDate>
-
-      <sparkle:version>0.0.10</sparkle:version>
-      <sparkle:shortVersionString>0.0.10</sparkle:shortVersionString>
-      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-
-      <enclosure
-        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.10/PixLog-Release-20260219-003939.zip"
-        sparkle:version="0.0.10"
-        sparkle:shortVersionString="0.0.10"
-        type="application/octet-stream"
-        length="1940109"
-        sparkle:edSignature="false"
-        sparkle:sha256="2938684ac701935345c06b0631c1f207e60ec4ea83da836a7b65beb10998a8a7"
-      />
-    </item>
 
     <item>
       <title>版本 0.0.9</title>
