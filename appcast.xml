@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.11 更新</title>
+    <title>PixLog v0.0.12 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.11更新</description>
+    <description>PixLog 应用的v0.0.12更新</description>
     <language>zh-CN</language>
+
+    <item>
+      <title>版本 0.0.12</title>
+      <description><![CDATA[
+        <h2>菜单栏体验优化</h2>
+        <ul>
+          <li>修复：ScrollView 首次渲染预留滚动条宽度导致的跳动问题</li>
+          <li>优化：菜单栏列表布局、间距与 hover 状态</li>
+          <li>优化：菜单栏排版与看板样式一致性</li>
+        </ul>
+      ]]></description>
+
+      <pubDate>Sat, 28 Feb 2026 01:52:39 +0800</pubDate>
+
+      <sparkle:version>12</sparkle:version>
+      <sparkle:shortVersionString>0.0.12</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+
+      <enclosure
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.12/PixLog-v0.0.12.zip"
+        sparkle:version="12"
+        sparkle:shortVersionString="0.0.12"
+        type="application/octet-stream"
+        length="1994366"
+        sparkle:edSignature="false"
+        sparkle:sha256="862a62531b7598ccba6cd1d5a683d67e511cedef07fb614be3e30a437e504863"
+      />
+    </item>
 
     <item>
       <title>版本 0.0.11</title>
