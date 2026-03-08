@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.13 更新</title>
+    <title>PixLog v0.0.14 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.13更新</description>
+    <description>PixLog 应用的v0.0.14更新</description>
     <language>zh-CN</language>
+
+    <item>
+      <title>版本 0.0.14</title>
+      <description><![CDATA[
+        <h2>图表与设置页调整</h2>
+        <ul>
+          <li>调整：按功能裁剪趋势页与 Today 图表改动</li>
+          <li>更新：Dock 图标资源</li>
+          <li>优化：统一主力设置按钮间距与图标</li>
+          <li>优化：主力设置卡片间距与部分 UI 细节</li>
+        </ul>
+      ]]></description>
+
+      <pubDate>Mon, 09 Mar 2026 02:18:52 +0800</pubDate>
+
+      <sparkle:version>14</sparkle:version>
+      <sparkle:shortVersionString>0.0.14</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+
+      <enclosure
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.14/PixLog-v0.0.14.zip"
+        sparkle:version="14"
+        sparkle:shortVersionString="0.0.14"
+        type="application/octet-stream"
+        length="2969612"
+        sparkle:edSignature="false"
+        sparkle:sha256="0f569ec5b029a5a3ea6d7784a146cf3a1b709007a504ff7ff73216e280d4a7d9"
+      />
+    </item>
 
     <item>
       <title>版本 0.0.13</title>
