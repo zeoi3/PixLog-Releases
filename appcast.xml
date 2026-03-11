@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.14 更新</title>
+    <title>PixLog v0.0.15 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.14更新</description>
+    <description>PixLog 应用的v0.0.15更新</description>
     <language>zh-CN</language>
+
+    <item>
+      <title>版本 0.0.15</title>
+      <description><![CDATA[
+        <h2>主力设置交互优化</h2>
+        <ul>
+          <li>优化：设置分组标题层级与间距</li>
+          <li>优化：主力迁移列表悬浮反馈与撤销提示位置</li>
+          <li>调整：主力迁移列表改为加减号并调整系统分割线间距</li>
+          <li>优化：主力应用未设置列表按自装与系统分组</li>
+          <li>重构：主力设置为应用与网站双列表页面</li>
+        </ul>
+      ]]></description>
+
+      <pubDate>Wed, 11 Mar 2026 12:04:38 +0800</pubDate>
+
+      <sparkle:version>15</sparkle:version>
+      <sparkle:shortVersionString>0.0.15</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+
+      <enclosure
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.15/PixLog-v0.0.15.zip"
+        sparkle:version="15"
+        sparkle:shortVersionString="0.0.15"
+        type="application/octet-stream"
+        length="2981383"
+        sparkle:edSignature="false"
+        sparkle:sha256="e1dff06e8282b112de49ced9b3512705211eed49406b4f6064d6279b0f84bf9a"
+      />
+    </item>
 
     <item>
       <title>版本 0.0.14</title>
