@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.15 更新</title>
+    <title>PixLog v0.0.16 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.15更新</description>
+    <description>PixLog 应用的v0.0.16更新</description>
     <language>zh-CN</language>
+
+    <item>
+      <title>版本 0.0.16</title>
+      <description><![CDATA[
+        <h2>新人引导体验优化</h2>
+        <ul>
+          <li>重构：新人引导第三步改为双栏主力软件选择界面</li>
+          <li>优化：引导按钮样式、标题层级和整体排版</li>
+          <li>调整：主力软件选择流程更直接，不再跳去完整设置页</li>
+        </ul>
+      ]]></description>
+
+      <pubDate>Mon, 23 Mar 2026 01:21:06 +0800</pubDate>
+
+      <sparkle:version>16</sparkle:version>
+      <sparkle:shortVersionString>0.0.16</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+
+      <enclosure
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.16/PixLog-v0.0.16.zip"
+        sparkle:version="16"
+        sparkle:shortVersionString="0.0.16"
+        type="application/octet-stream"
+        length="5101705"
+        sparkle:edSignature="false"
+        sparkle:sha256="991da101008c1e43f715c466f702c6ba00c723fca1ffcd896e1fe63c444b649e"
+      />
+    </item>
 
     <item>
       <title>版本 0.0.15</title>
