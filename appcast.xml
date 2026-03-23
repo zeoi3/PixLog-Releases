@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>PixLog v0.0.16 更新</title>
+    <title>PixLog v0.0.17 更新</title>
     <link>https://github.com/zeoi3/PixLog-Releases/releases</link>
-    <description>PixLog 应用的v0.0.16更新</description>
+    <description>PixLog 应用的v0.0.17更新</description>
     <language>zh-CN</language>
+
+    <item>
+      <title>版本 0.0.17</title>
+      <description><![CDATA[
+        <h2>本地来源统计优化</h2>
+        <ul>
+          <li>新增：本地 HTML 现在会显示为“项目名 · 文件名”</li>
+          <li>优化：localhost 和 127.0.0.1 统一识别为本地开发，并按端口区分</li>
+          <li>调整：本地文件不会进入主力网址选择，诊断日志不再记录完整本地路径</li>
+        </ul>
+      ]]></description>
+
+      <pubDate>Mon, 23 Mar 2026 20:09:27 +0800</pubDate>
+
+      <sparkle:version>17</sparkle:version>
+      <sparkle:shortVersionString>0.0.17</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+
+      <enclosure
+        url="https://github.com/zeoi3/PixLog-Releases/releases/download/v0.0.17/PixLog-v0.0.17.zip"
+        sparkle:version="17"
+        sparkle:shortVersionString="0.0.17"
+        type="application/octet-stream"
+        length="5152783"
+        sparkle:edSignature="false"
+        sparkle:sha256="b96c2db25a4d0b5ae9fa247d6d31291984f84d5752e59c59cbd3eb4a784703e6"
+      />
+    </item>
 
     <item>
       <title>版本 0.0.16</title>
