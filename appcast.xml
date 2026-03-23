@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>Focus Pixels v0.0.18 更新</title>
+    <title>Focus Pixels v0.0.19 更新</title>
     <link>https://github.com/zeoi3/FocusPixels-Releases/releases</link>
-    <description>Focus Pixels 应用的 v0.0.18 更新</description>
+    <description>Focus Pixels 应用的 v0.0.19 更新</description>
     <language>zh-CN</language>
+
+    <item>
+      <title>版本 0.0.19</title>
+      <description><![CDATA[
+        <h2>品牌改名与更新链路收口</h2>
+        <ul>
+          <li>更新：应用名称统一为 Focus Pixels，安装包名称同步更新</li>
+          <li>调整：自动更新地址切换到新的 FocusPixels-Releases 仓库</li>
+          <li>兼容：首次启动会继续接管旧 PixLog 本地数据，历史记录不会丢</li>
+        </ul>
+      ]]></description>
+
+      <pubDate>Mon, 23 Mar 2026 22:00:26 +0800</pubDate>
+
+      <sparkle:version>19</sparkle:version>
+      <sparkle:shortVersionString>0.0.19</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+
+      <enclosure
+        url="https://raw.githubusercontent.com/zeoi3/FocusPixels-Releases/main/FocusPixels-v0.0.19.zip"
+        sparkle:version="19"
+        sparkle:shortVersionString="0.0.19"
+        type="application/octet-stream"
+        length="5177030"
+        sparkle:edSignature="false"
+        sparkle:sha256="4547160f064aec3c3717b2f38fe5cdc881e02d8f654d8b8102e542a1ad097604"
+      />
+    </item>
 
     <item>
       <title>版本 0.0.18</title>
