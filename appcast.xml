@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>Focus Pixels v0.0.22 更新</title>
+    <title>Focus Pixels v0.0.23 更新</title>
     <link>https://github.com/zeoi3/FocusPixels-Releases/releases</link>
-    <description>Focus Pixels 应用的 v0.0.22 更新</description>
+    <description>Focus Pixels 应用的 v0.0.23 更新</description>
     <language>zh-CN</language>
+
+    <item>
+      <title>版本 0.0.23</title>
+      <description><![CDATA[
+        <h2>收起独立设置入口</h2>
+        <ul>
+          <li>调整：移除系统默认的“设置...”独立入口，不再弹出单独的空设置窗口</li>
+          <li>统一：设置体验继续收口在应用现有界面里，入口更单一，不容易让人困惑</li>
+          <li>保持：其余功能与 0.0.22 一致，本次主要是交互收尾</li>
+        </ul>
+      ]]></description>
+
+      <pubDate>Mon, 23 Mar 2026 22:34:07 +0800</pubDate>
+
+      <sparkle:version>23</sparkle:version>
+      <sparkle:shortVersionString>0.0.23</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+
+      <enclosure
+        url="https://raw.githubusercontent.com/zeoi3/FocusPixels-Releases/main/FocusPixels-v0.0.23.zip"
+        sparkle:version="23"
+        sparkle:shortVersionString="0.0.23"
+        type="application/octet-stream"
+        length="5197507"
+        sparkle:edSignature="4FEhjDwoliWg0M2vfk9N5A6taHQnED8qsFf/iuqdRLEMQiQNya2F26nVdaEh1GQ9sqCCylBnxZ3uX9XyhuV1DA=="
+        sparkle:sha256="998312a835df3d67d4b4edfe4effbb0a1c3b163afc0dcf7b7eefb898dbef719a"
+      />
+    </item>
 
     <item>
       <title>版本 0.0.22</title>
