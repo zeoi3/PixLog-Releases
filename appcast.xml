@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>Focus Pixels v0.0.21 更新</title>
+    <title>Focus Pixels v0.0.22 更新</title>
     <link>https://github.com/zeoi3/FocusPixels-Releases/releases</link>
-    <description>Focus Pixels 应用的 v0.0.21 更新</description>
+    <description>Focus Pixels 应用的 v0.0.22 更新</description>
     <language>zh-CN</language>
+
+    <item>
+      <title>版本 0.0.22</title>
+      <description><![CDATA[
+        <h2>重新打包正式安装包</h2>
+        <ul>
+          <li>重新发布：从当前 APP 源码重新编译并生成新的正式安装包</li>
+          <li>校正：版本号与 Sparkle 更新条目同步提升到 0.0.22，避免和旧包混淆</li>
+          <li>说明：功能内容与 0.0.21 保持一致，这次主要用于稳定重发</li>
+        </ul>
+      ]]></description>
+
+      <pubDate>Mon, 23 Mar 2026 22:26:34 +0800</pubDate>
+
+      <sparkle:version>22</sparkle:version>
+      <sparkle:shortVersionString>0.0.22</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+
+      <enclosure
+        url="https://raw.githubusercontent.com/zeoi3/FocusPixels-Releases/main/FocusPixels-v0.0.22.zip"
+        sparkle:version="22"
+        sparkle:shortVersionString="0.0.22"
+        type="application/octet-stream"
+        length="5197115"
+        sparkle:edSignature="5n6uWtONdhVpoL8mP/oo37j2jLnNyFG4hoHexuwGVQiFY/AjkzIwhPNIoTTSl6gC73wnaJdPpa51gMjH+CSkCA=="
+        sparkle:sha256="ced483376e5672d6e43f94aa68c74009728d414f23742184b19217a117832f6c"
+      />
+    </item>
 
     <item>
       <title>版本 0.0.21</title>
